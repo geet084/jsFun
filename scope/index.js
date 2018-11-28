@@ -29,12 +29,24 @@ const scope = {
 
     // Log D: personC
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Ben'},
+      {'B': 'CardiB'},
+      {'C': 'CardiB'},
+      {'D': 'Paul'}
+    ];
     return result;
 
     // Annotation:
     // Write your annotation here as a comment
   },
+
+
+
+
+
+
+
 
   exerciseB() {
     let number = 30;
@@ -63,11 +75,16 @@ const scope = {
 
     // Log D: number
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 75},
+      {'B': 64},
+      {'C': 64},
+      {'D': 30}
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // We declare a global variable called number, as well as the number function during the creation phase. During the execution phase, the number is assigned the value of 30. We skip the number function body until it is invoked. During the number function creation phase will declare functionally scoped variable called number, and a function called new number. Because number is strictly equal to 75, a new block scoped variable is declared and assigned a value 28. But because that variable is block scoped, when we log A, we are looking inside the function scope of number function rather than the conditional if block. As such, log A is 75. When we invoke the new number function, the reassignment in the new number function sets the value of number to 64, where previously it was 75. When we log B it is a value of 64. Log C references the same functionally scoped variable, so log C is the reassigned value of 64. So when we log D, we are the global scope and log D will have the value of 30.
   },
 
   exerciseC() {
@@ -97,7 +114,12 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Yo'},
+      {'B': 'Hey'},
+      {'C': 'Hey'},
+      {'D': 'Hello'},
+    ];
     return result;
 
     // Annotation:
@@ -131,7 +153,12 @@ const scope = {
 
     // Log D: greeting
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'hi'},
+      {'B': 'welcome'},
+      {'C': 'welcome'},
+      {'D': 'howdy'},
+    ];
     return result;
 
     // Annotation:
@@ -163,7 +190,12 @@ const scope = {
 
     // Log D: name
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'C': 'Brittany'},
+      {'A': 'Nathaniel'},
+      {'B': 'Nathaniel'},
+      {'D': 'Brittany'},
+    ];
     return result;
 
     // Annotation:
@@ -198,7 +230,13 @@ const scope = {
 
     // Log E: dog
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Spot'},
+      {'B': 'Spot'},
+      {'C': 'Biscuit'},
+      {'D': 'Biscuit'},
+      {'E': 'Biscuit'},
+    ];
     return result;
 
     // Annotation:
@@ -228,7 +266,12 @@ const scope = {
 
     // Log D: fruit
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'reference error'},
+      {'B': 'mango'},
+      {'C': 'mango'},
+      {'D': 'apple'},
+    ];
     return result;
 
     // Annotation:
@@ -268,7 +311,13 @@ const scope = {
 
     fn1();
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 4},
+      {'D': 9},
+      {'E': 10},
+      {'B': 9},
+      {'C': 4},
+    ];
     return result;
 
     // Annotation:
@@ -299,7 +348,16 @@ const scope = {
     eatSnack();
     // Log E: hunger
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 75},
+      {'B': 0},
+      {'C': 75},
+      {'D': 80},
+      {'A': 55},
+      {'B': 0},
+      {'C': 55},
+      {'E': 55},
+    ];
     return result;
 
     // Annotation:
@@ -340,7 +398,14 @@ const scope = {
     // Log E: sandwich
     // Log F: amandaBynes
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'ketchup sandwich'},
+      {'D': 'gouda'},
+      {'B': 'chipotle sauce'},
+      {'C': 'not a mediocre sandwich'},
+      {'E': 'not a mediocre sandwich'},
+      {'F': 'National Treasure'},
+    ];
     return result;
 
     // Annotation:
