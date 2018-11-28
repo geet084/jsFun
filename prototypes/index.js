@@ -23,7 +23,11 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
     // ['Tiger', 'Snickers']
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.filter((kitty) => {
+      return kitty.color === 'orange';
+    }).map((kitty) => {
+      return kitty.name;
+    });
     return result;
 
     // Annotation:
@@ -33,7 +37,9 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((kitty) => {
+      return kitty;
+    }).sort();
     return result;
 
     // Annotation:
@@ -54,7 +60,10 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = kitties.map((kitty) => {
+      kitty.age += 2;
+      return kitty;
+    });
     return result;
   }
 };
@@ -122,7 +131,13 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = mods.map((module) => {
+    // create studentsPerInstructor variable
+    // assign it to mod.students / mod.instructors
+    // return obj mod num and studentsPerInstructor
+      let studentsPerInstructor = module.students / module.instructors;
+      return { mod: module.mod, studentsPerInstructor: studentsPerInstructor };
+    });
     return result;
 
     // Annotation:

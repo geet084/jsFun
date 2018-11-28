@@ -400,7 +400,7 @@ const scope = {
 
     const result = [
       {'A': 'ketchup sandwich'},
-      {'D': 'gouda'},
+      {'D': 'undefined'},
       {'B': 'chipotle sauce'},
       {'C': 'not a mediocre sandwich'},
       {'E': 'not a mediocre sandwich'},
