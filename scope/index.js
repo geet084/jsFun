@@ -400,8 +400,8 @@ const scope = {
 
     const result = [
       {'A': 'ketchup sandwich'},
-      {'D': 'undefined'},
-      {'B': 'chipotle sauce'},
+      {'D': 'gouda'},
+      {'B': undefined},
       {'C': 'not a mediocre sandwich'},
       {'E': 'not a mediocre sandwich'},
       {'F': 'National Treasure'},
@@ -426,7 +426,10 @@ const scope = {
 
     // Log B: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 7},
+      {'B': 7},
+    ];
     return result;
 
     // Annotation:
@@ -458,7 +461,11 @@ const scope = {
 
     // Log C: grade
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 95},
+      {'B': 90},
+      {'C': 90},
+    ];
     return result;
 
     // Annotation:
@@ -484,7 +491,12 @@ const scope = {
 
     // Log D: num
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 5},
+      {'B': 6},
+      {'C': 'reference error'},
+      {'D': 6},
+    ];
     return result;
 
     // Annotation:
@@ -523,7 +535,14 @@ const scope = {
 
     // Log F: instructor
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'E': 'Pam'},
+      {'A': 'Pam'},
+      {'B': 'Pam'},
+      {'C': 'Louisa'},
+      {'D': 'Louisa'},
+      {'F': 'Louisa'},
+    ];
     return result;
 
     // Annotation:
@@ -542,7 +561,11 @@ const scope = {
     putOnShoe();
     // Log C: shoe
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'B': 'flipflop'},
+      {'A': undefined},
+      {'C': 'flipflop'},
+    ];
     return result;
 
     // Annotation:
@@ -568,7 +591,10 @@ const scope = {
 
     // Log C: lunch
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'B': 'soup'},
+      {'C': 'soup'},
+    ];
     return result;
 
     // Annotation:
@@ -605,7 +631,13 @@ const scope = {
 
     myCrazyKidAntics(myKid);
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Pandora'},
+      {'B': ['Antigone','Pandora']},
+      {'C': 'Mandy'},
+      {'D': 'Antigone'},
+      {'E': 'Pandora'},
+    ];
     return result;
 
     // Annotation:
@@ -632,7 +664,12 @@ const scope = {
     parentFunc();
     // Log D: myName
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      {'A': 'Rody'},
+      {'B': 'RodyToy'},
+      {'C': 'Tesla'},
+      {'D': 'RodyToyDaniels'},
+    ];
     return result;
 
     // Annotation:

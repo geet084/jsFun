@@ -37,9 +37,11 @@ const kittyPrompts = {
   sortByAge() {
     // Sort the kitties by their age
 
-    const result = kitties.map((kitty) => {
-      return kitty;
-    }).sort();
+    // const [...sortedKitties] = kitties;
+    const result = kitties.sort(function(a, b) { 
+      return b.age - a.age;
+    });
+
     return result;
 
     // Annotation:
@@ -64,6 +66,7 @@ const kittyPrompts = {
       kitty.age += 2;
       return kitty;
     });
+
     return result;
   }
 };
@@ -172,7 +175,11 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.map((cake) => {
+      let flavor = cake.cakeFlavor;
+      let stk = cake.inStock;
+      return {flavor: flavor, inStock: stk};
+    });
     return result;
 
     // Annotation:
@@ -200,7 +207,9 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.filter((cake) => {
+      return cake.inStock;
+    });
     return result;
 
     // Annotation:
@@ -211,7 +220,10 @@ const cakePrompts = {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((totalInStock, cake) => {
+      totalInStock += cake.inStock;
+      return totalInStock;
+    }, 0);
     return result;
 
     // Annotation:
@@ -223,7 +235,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let topList = [];
+    cakes.forEach((cake) => {
+      topList = cake.toppings.filter((topping) => {
+        if(topList.indexOf(topping) === -1) return topping;
+      }).concat(topList);
+    });
+    console.log('cakes...',topList)
+    const result = topList;
     return result;
 
     // Annotation:
@@ -276,7 +295,13 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    let rooms = classrooms.map((room) => {
+      console.log(room.program);
+      if(room.program('FE')) return room;
+    });
+
+    const result = rooms;
+
     return result;
 
     // Annotation:
@@ -407,7 +432,20 @@ const turingPrompts = {
     //  { name: 'Robbie', studentCount: 18 }
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    // map over instr array
+    // find matching cohort for current instr
+    // grab student count value from matching cohort
+    // return object that includes name and student count
+
+    const result = instructors.map((instructor) => {
+      let matchingCohort = cohorts.find((cohort) => {
+        return cohort.module === instructor.module;
+      });
+
+      let numOfStudents = matchingCohort.studentCount;
+
+      return { name: instructor.name, studentCount: numOfStudents };
+    });
     return result;
 
     // Annotation:
@@ -626,6 +664,10 @@ const ultimaPrompts = {
 module.exports = {
   breweryPrompts,
   turingPrompts,
+<<<<<<< HEAD
+=======
+  // piePrompts,
+>>>>>>> Another one
   clubPrompts,
   bossPrompts,
   classPrompts,
