@@ -38,10 +38,9 @@ const kittyPrompts = {
     // Sort the kitties by their age
 
     // const [...sortedKitties] = kitties;
-    const result = kitties.sort(function(a, b) { 
+    const result = kitties.sort((a, b) => { 
       return b.age - a.age;
     });
-
     return result;
 
     // Annotation:
@@ -66,7 +65,6 @@ const kittyPrompts = {
       kitty.age += 2;
       return kitty;
     });
-
     return result;
   }
 };
@@ -98,7 +96,15 @@ const clubPrompts = {
     //   ...etc
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+
+
+    const result = clubs.reduce((acc, club) => {
+      club.members.forEach((member) => {
+        if(!acc[member]) acc[member] = [];
+        acc[member].push(club.club);
+      });
+      return acc;
+    }, {});
     return result;
 
     // Annotation:
@@ -134,12 +140,13 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    const result = mods.map((module) => {
     // create studentsPerInstructor variable
     // assign it to mod.students / mod.instructors
     // return obj mod num and studentsPerInstructor
-      let studentsPerInstructor = module.students / module.instructors;
-      return { mod: module.mod, studentsPerInstructor: studentsPerInstructor };
+
+    const result = mods.map((mod) => {
+      let studentsPerInstructor = mod.students / mod.instructors;
+      return { mod: mod.mod, studentsPerInstructor: studentsPerInstructor };
     });
     return result;
 
@@ -176,9 +183,7 @@ const cakePrompts = {
     // ]
 
     const result = cakes.map((cake) => {
-      let flavor = cake.cakeFlavor;
-      let stk = cake.inStock;
-      return {flavor: flavor, inStock: stk};
+      return { flavor: cake.cakeFlavor, inStock: cake.inStock };
     });
     return result;
 
@@ -221,8 +226,7 @@ const cakePrompts = {
     // 59
 
     const result = cakes.reduce((totalInStock, cake) => {
-      totalInStock += cake.inStock;
-      return totalInStock;
+      return totalInStock += cake.inStock;
     }, 0);
     return result;
 
@@ -235,14 +239,14 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    let topList = [];
-    cakes.forEach((cake) => {
-      topList = cake.toppings.filter((topping) => {
-        if(topList.indexOf(topping) === -1) return topping;
-      }).concat(topList);
-    });
-    console.log('cakes...',topList)
-    const result = topList;
+    const result = cakes.reduce((toppingList, cake) => {
+      cake.toppings.forEach((topping) => {
+        if(toppingList.indexOf(topping) === -1) {
+          toppingList.push(topping);
+        }
+      });
+      return toppingList;
+    }, []);
     return result;
 
     // Annotation:
@@ -259,8 +263,13 @@ const cakePrompts = {
     //    'berries': 2, 
     //    ...etc
     // }
-
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = cakes.reduce((groceryList, cake) => {
+      cake.toppings.forEach((topping) => {
+        if(groceryList[topping]) groceryList[topping] += 1;
+        if(!groceryList[topping]) groceryList[topping] = 1;
+      });
+      return groceryList;
+    }, {});
     return result;
 
     // Annotation:
@@ -295,13 +304,9 @@ const classPrompts = {
     //   { roomLetter: 'G', program: 'FE', capacity: 29 }
     // ]
 
-    let rooms = classrooms.map((room) => {
-      console.log(room.program);
-      if(room.program('FE')) return room;
+    const result = classrooms.filter((room) => {
+      if(room.program === 'FE') return room;
     });
-
-    const result = rooms;
-
     return result;
 
     // Annotation:
@@ -316,7 +321,12 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.reduce((school, room) => {
+      if(room.program === 'FE') school.feCapacity += room.capacity;
+      else school.beCapacity += room.capacity;
+
+      return school;
+    }, { feCapacity: 0, beCapacity: 0 });
     return result;
 
     // Annotation:
@@ -326,7 +336,9 @@ const classPrompts = {
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = classrooms.sort((a, b) => {
+      return a.capacity - b.capacity;
+    });
     return result;
 
     // Annotation:
@@ -356,7 +368,12 @@ const breweryPrompts = {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((beerCount, brewery) => {
+      brewery.beers.forEach((beer) => {
+        beerCount += 1;
+      });
+      return beerCount; 
+    }, 0);
     return result;
 
     // Annotation:
@@ -372,7 +389,13 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((tally, brewery) => {
+      let count = brewery.beers.reduce((total, beer) => {
+        return total += 1;
+      }, 0);
+      tally.push({ name: brewery.name, beerCount: count });
+      return tally;
+    }, []);
     return result;
 
     // Annotation:
@@ -384,7 +407,13 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = breweries.reduce((currHighestBeer, brewery) => {
+      currHighestBeer.abv = 0;
+      brewery.beers.forEach((beer) => {
+        if(beer.abv > currHighestBeer.abv) currHighestBeer = beer;
+      });
+      return currHighestBeer;
+    }, {});
     return result;
 
     // Annotation:
@@ -442,9 +471,7 @@ const turingPrompts = {
         return cohort.module === instructor.module;
       });
 
-      let numOfStudents = matchingCohort.studentCount;
-
-      return { name: instructor.name, studentCount: numOfStudents };
+      return { name: instructor.name, studentCount: matchingCohort.studentCount };
     });
     return result;
 
@@ -458,8 +485,14 @@ const turingPrompts = {
     // cohort1806: 9,
     // cohort1804: 10.5
     // }
+    const result = cohorts.reduce((studentsPerTeacher, cohort) => {
+      let teachers = instructors.filter((instructor) => {
+        return instructor.module === cohort.module;
+      }).length;
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+      studentsPerTeacher[`cohort${cohort.cohort}`] = cohort.studentCount / teachers;
+      return studentsPerTeacher;
+    }, {});
     return result;
 
     // Annotation:
@@ -476,7 +509,19 @@ const turingPrompts = {
     //   Pam: [2, 4]
     // }
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = instructors.reduce((modsPerTeacher, instructor) => {
+      let teacher = modsPerTeacher[`${instructor.name}`] = [];
+
+      instructor.teaches.filter((idea) => {
+        cohorts.filter((cohort) => {
+          let curriculumMatches = cohort.curriculum.indexOf(idea) !== -1;
+          let notDupMod = teacher.indexOf(cohort.module) === -1;
+
+          if(curriculumMatches &&  notDupMod) teacher.push(cohort.module);
+        });
+      });
+      return modsPerTeacher;
+    }, {});
     return result;
 
     // Annotation:
@@ -664,10 +709,7 @@ const ultimaPrompts = {
 module.exports = {
   breweryPrompts,
   turingPrompts,
-<<<<<<< HEAD
-=======
   // piePrompts,
->>>>>>> Another one
   clubPrompts,
   bossPrompts,
   classPrompts,
